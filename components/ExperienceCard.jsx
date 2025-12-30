@@ -1,14 +1,16 @@
-
 import React from 'react';
-import { Experience } from '../types';
 
-const ExperienceCard: React.FC<{ exp: Experience }> = ({ exp }) => {
+export default function ExperienceCard({ exp }) {
   // Simple helper to parse basic markdown bolding
-  const formatText = (text: string) => {
+  const formatText = (text) => {
     const parts = text.split(/(\*\*.*?\*\*)/g);
     return parts.map((part, i) => {
       if (part.startsWith('**') && part.endsWith('**')) {
-        return <strong key={i} className="text-slate-900 font-bold">{part.slice(2, -2)}</strong>;
+        return (
+          <strong key={i} className="text-slate-900 font-bold">
+            {part.slice(2, -2)}
+          </strong>
+        );
       }
       return part;
     });
@@ -33,13 +35,13 @@ const ExperienceCard: React.FC<{ exp: Experience }> = ({ exp }) => {
           </div>
         </div>
       </div>
-      
+
       <div className="relative pl-8 md:pl-12 border-l-2 border-slate-100 space-y-8">
         {exp.highlights.map((h, i) => (
           <div key={i} className="relative group">
             {/* Timeline dot */}
             <div className="absolute -left-[33px] md:-left-[49px] top-1.5 w-4 h-4 rounded-full border-2 border-white bg-slate-200 group-hover:bg-blue-600 group-hover:scale-125 transition-all duration-300"></div>
-            
+
             <div className="bg-white p-2 rounded-xl transition-all">
               <p className="text-slate-600 leading-relaxed text-base md:text-lg">
                 {formatText(h)}
@@ -50,6 +52,4 @@ const ExperienceCard: React.FC<{ exp: Experience }> = ({ exp }) => {
       </div>
     </div>
   );
-};
-
-export default ExperienceCard;
+}
