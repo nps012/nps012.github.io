@@ -39,6 +39,4 @@ export default function Hero() {
       </div>
     </section>
   );
-};
-
-export default Hero;
+}
