@@ -1,12 +1,12 @@
 
 import React from 'react';
-import Navigation from './components/Navigation';
-import Hero from './components/Hero';
-import UPSCSection from './components/UPSCSection';
-import ExperienceCard from './components/ExperienceCard';
-import SkillsSection from './components/SkillsSection';
-import LeadershipSection from './components/LeadershipSection';
-import ResumeAssistant from './components/ResumeAssistant';
+import Navigation from './components/Navigation.jsx';
+import Hero from './components/Hero.jsx';
+import UPSCSection from './components/UPSCSection.jsx';
+import ExperienceCard from './components/ExperienceCard.jsx';
+import SkillsSection from './components/SkillsSection.jsx';
+import LeadershipSection from './components/LeadershipSection.jsx';
+import ResumeAssistant from './components/ResumeAssistant.jsx';
 import { EXPERIENCES, ACHIEVEMENTS } from './constants.js';
 
 export default function App() {
