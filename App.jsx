@@ -7,7 +7,7 @@ import ExperienceCard from './components/ExperienceCard';
 import SkillsSection from './components/SkillsSection';
 import LeadershipSection from './components/LeadershipSection';
 import ResumeAssistant from './components/ResumeAssistant';
-import { EXPERIENCES, ACHIEVEMENTS } from './constants';
+import { EXPERIENCES, ACHIEVEMENTS } from './constants.js';
 
 const App: React.FC = () => {
   return (
