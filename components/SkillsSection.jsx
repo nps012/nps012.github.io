@@ -5,7 +5,7 @@ import { TECH_SKILLS, FUNCTIONAL_SKILLS } from '../constants';
 
 const COLORS = ['#1e293b', '#2563eb', '#4f46e5', '#7c3aed'];
 
-const SkillsSection: React.FC = () => {
+export default function SkillsSection() {
   return (
     <section id="skills" className="py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,6 +60,4 @@ const SkillsSection: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default SkillsSection;
+}
