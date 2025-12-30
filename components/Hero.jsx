@@ -16,7 +16,7 @@ export default function Hero() {
           <div className="max-w-3xl">
             <h2 className="text-xs font-bold tracking-[0.4em] text-blue-600 uppercase mb-6">Ex-IIT Bombay | Project Manager | UPSC Achiever</h2>
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-8 leading-tight serif-heading tracking-tight">
-              Grit, Discipline, & <span className="text-blue-600">Project Excellence</span>.
+              Grit, Discipline & <span className="text-blue-600">Project Excellence</span>.
             </h1>
             <p className="text-xl text-slate-600 mb-12 leading-relaxed font-medium max-w-2xl mx-auto">
               Project Manager with a documented history of delivering digital banking solutions. 
