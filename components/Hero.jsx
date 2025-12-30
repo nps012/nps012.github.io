@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const Hero: React.FC = () => {
+export default function Hero() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
