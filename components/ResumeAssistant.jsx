@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI } from "@google/genai";
 
-const ResumeAssistant: React.FC = () => {
+export default function ResumeAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [messages, setMessages] = useState<{role: 'user' | 'bot', text: string}[]>([]);
