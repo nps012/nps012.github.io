@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-const UPSCSection: React.FC = () => {
+export default function UPSCSection() {
   return (
     <section id="grit" className="py-24 bg-white border-y border-slate-200">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
