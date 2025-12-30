@@ -46,6 +46,4 @@ export default function UPSCSection() {
       </div>
     </section>
   );
-};
-
-export default UPSCSection;
+}
