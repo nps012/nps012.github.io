@@ -43,6 +43,4 @@ export default function LeadershipSection() {
       </div>
     </section>
   );
-};
-
-export default LeadershipSection;
+}
