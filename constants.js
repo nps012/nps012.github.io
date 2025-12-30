@@ -1,7 +1,4 @@
-
-import { Experience, Achievement, LeadershipRole } from './types';
-
-export const EXPERIENCES: Experience[] = [
+export const EXPERIENCES = [
   {
     role: "Project Manager - Digital Transformation",
     company: "RBL Bank",
@@ -29,7 +26,7 @@ export const EXPERIENCES: Experience[] = [
   }
 ];
 
-export const ACHIEVEMENTS: Achievement[] = [
+export const ACHIEVEMENTS = [
   {
     title: "99.8 Percentile - UPSC CSE",
     detail: "Reached the final interview stage of the Civil Services Examination, demonstrating a rigorous analytical approach and strategic thinking.",
@@ -50,7 +47,7 @@ export const ACHIEVEMENTS: Achievement[] = [
   }
 ];
 
-export const LEADERSHIP: LeadershipRole[] = [
+export const LEADERSHIP = [
   {
     role: "Head of Operations",
     org: "Student Alumni Relations Cell, IITB",
