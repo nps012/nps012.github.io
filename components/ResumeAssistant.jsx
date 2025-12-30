@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
-import { GoogleGenerativeAI } from "@google/generative-ai"
+import { GoogleGenAI } from "@google/genai"
 
 export default function ResumeAssistant() {
   const [isOpen, setIsOpen] = useState(false)
@@ -7,7 +7,7 @@ export default function ResumeAssistant() {
   const [messages, setMessages] = useState([])
   const [loading, setLoading] = useState(false)
 
-  // Let user store key in browser (GitHub Pages has no secure server env)
+  // GitHub Pages can't safely store secrets; allow user to paste key in browser
   const [apiKey, setApiKey] = useState(() => localStorage.getItem("GEMINI_API_KEY") || "")
 
   const scrollRef = useRef(null)
@@ -29,15 +29,15 @@ You are a professional assistant representing Narendra Pal Singh to potential re
 Context:
 - Narendra is an IIT Bombay Mechanical Engineering graduate.
 - Experience: Project Manager at RBL Bank (focused on infrastructure efficiency and customer satisfaction).
-- UPSC: 99.8 percentile, reached the final Interview stage (demonstrating resilience and analytical depth).
+- UPSC: 99.8 percentile, reached the final Interview stage.
 - RBI: Top 200 in RBI Grade B 2024.
 - Target Roles: Sales, Generalist, or Project/Product Management.
-- Key Strengths: Demonstrated grit, structured thinking, disciplined execution, and stakeholder management.
+- Key Strengths: grit, structured thinking, disciplined execution, stakeholder management.
 
 Style:
-- Maintain a balanced, professional tone.
-- Avoid excessive hyperbole or repetitive use of the word "elite".
-- Prefer concrete evidence, metrics, and concise answers.
+- Balanced, professional tone.
+- Avoid excessive hype.
+- Prefer concrete evidence and concise answers.
 `,
     []
   )
@@ -54,27 +54,30 @@ Style:
       if (!apiKey) {
         setMessages((prev) => [
           ...prev,
-          {
-            role: "bot",
-            text:
-              "To answer with AI, please paste your Gemini API key in the box above. (It stays only in your browser.)",
-          },
+          { role: "bot", text: "Paste your Gemini API key above to enable AI answers (saved only in your browser)." },
         ])
         return
       }
 
-      const genAI = new GoogleGenerativeAI(apiKey)
-      const model = genAI.getGenerativeModel({
+      const ai = new GoogleGenAI({ apiKey })
+
+      const resp = await ai.models.generateContent({
+        // use a generally available model name
         model: "gemini-1.5-flash",
-        systemInstruction,
+        contents: userMsg,
+        config: { systemInstruction },
       })
 
-      const result = await model.generateContent(userMsg)
-      const text = result?.response?.text?.() || "Sorry — I couldn't generate a response."
+      // Different versions return text in slightly different shapes; handle safely:
+      const text =
+        resp?.text ||
+        resp?.response?.text ||
+        (typeof resp?.response?.text === "function" ? resp.response.text() : null) ||
+        "Sorry — I couldn't generate a response."
 
       setMessages((prev) => [...prev, { role: "bot", text }])
-    } catch (error) {
-      console.error(error)
+    } catch (e) {
+      console.error(e)
       setMessages((prev) => [
         ...prev,
         { role: "bot", text: "Error connecting to AI. Please check your API key and try again." },
@@ -87,7 +90,7 @@ Style:
   return (
     <div className="fixed bottom-6 right-6 z-[60]">
       {isOpen ? (
-        <div className="bg-white w-80 sm:w-96 h-[560px] shadow-2xl rounded-2xl border border-slate-200 flex flex-col overflow-hidden animate-in slide-in-from-bottom-5">
+        <div className="bg-white w-80 sm:w-96 h-[560px] shadow-2xl rounded-2xl border border-slate-200 flex flex-col overflow-hidden">
           <div className="bg-slate-900 text-white p-4 flex justify-between items-center">
             <h3 className="font-bold flex items-center gap-2">
               <i className="fas fa-robot text-blue-400"></i> AI Portfolio Assistant
@@ -97,7 +100,7 @@ Style:
             </button>
           </div>
 
-          {/* API key area (only stored in browser) */}
+          {/* API key box */}
           <div className="p-3 border-b border-slate-100 bg-white">
             <label className="text-xs font-semibold text-slate-600">Gemini API Key (stored in your browser)</label>
             <div className="flex gap-2 mt-2">
@@ -117,7 +120,7 @@ Style:
             </div>
             {!apiKey && (
               <p className="text-[11px] text-slate-400 mt-2">
-                If you don’t want AI, you can leave this empty — the portfolio still works.
+                If you don’t want AI, leave this empty — the portfolio still works.
               </p>
             )}
           </div>
