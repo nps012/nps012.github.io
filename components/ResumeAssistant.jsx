@@ -108,6 +108,4 @@ export default function ResumeAssistant() {
       )}
     </div>
   );
-};
-
-export default ResumeAssistant;
+}
