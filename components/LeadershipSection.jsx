@@ -2,7 +2,7 @@
 import React from 'react';
 import { LEADERSHIP } from '../constants';
 
-const LeadershipSection: React.FC = () => {
+export default function LeadershipSection() {
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       {/* Decorative Background Elements */}
